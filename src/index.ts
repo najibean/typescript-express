@@ -1,6 +1,18 @@
 import express, { Application, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 
+// morgan berfungsi untuk melihat url yang sedang dikonsumsi
+import morgan from 'morgan';
+
+// compression untuk memperkecil ukuran dari response
+import compression from 'compression';
+
+// cors berfungsi untuk handle cors origin
+import cors from 'cors';
+
+// helmet berfungsi melindungi header dari attackers
+import helmet from 'helmet';
+
 class App {
   public app: Application;
 
@@ -12,6 +24,10 @@ class App {
 
   protected plugins(): void {
     this.app.use(bodyParser.json());
+    this.app.use(morgan('dev'));
+    this.app.use(compression());
+    this.app.use(helmet());
+    this.app.use(cors());
   }
 
   protected routes(): void {
