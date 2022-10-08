@@ -1,9 +1,20 @@
 import express, { Application, Request, Response } from 'express';
 
-const app = express();
+class App {
+  public app: Application;
 
-app.route('/ok').get((req: Request, res: Response) => {
-  res.send('Hi, ini router pertama Najib');
-});
+  constructor() {
+    this.app = express();
+    this.routes();
+  }
 
-app.listen(7000, () => console.log('App run in port 7000'));
+  protected routes(): void {
+    this.app.route('/').get((req: Request, res: Response) => {
+      return res.send('ini adalah route menggunakan typescript');
+    });
+  }
+}
+
+const PORT: number = 8000;
+const app = new App().app;
+app.listen(PORT, () => console.log('Aplikasi ini berjalan di port ' + PORT));
