@@ -13,6 +13,9 @@ import cors from 'cors';
 // helmet berfungsi melindungi header dari attackers
 import helmet from 'helmet';
 
+// routers
+import UserRoutes from './routers/user.router';
+
 class App {
   public app: Application;
 
@@ -35,9 +38,7 @@ class App {
       return res.send('ini adalah route menggunakan typescript');
     });
 
-    this.app.route('/users').post((req: Request, res: Response) => {
-      return res.send(req.body);
-    });
+    this.app.use('/users', UserRoutes.router);
   }
 }
 
