@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import bodyParser from 'body-parser';
+import { config as dotenv } from 'dotenv';
 
 // morgan berfungsi untuk melihat url yang sedang dikonsumsi
 import morgan from 'morgan';
@@ -23,6 +24,7 @@ class App {
     this.app = express();
     this.plugins();
     this.routes();
+    dotenv();
   }
 
   protected plugins(): void {
