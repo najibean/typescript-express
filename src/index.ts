@@ -41,7 +41,7 @@ class App {
       return res.send('ini adalah route menggunakan typescript');
     });
 
-    this.app.use('/api/v1/users', UserRoutes.router);
+    this.app.use('/api/v1/users', UserRoutes);
   }
 }
 

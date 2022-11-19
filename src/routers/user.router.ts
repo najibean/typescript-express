@@ -14,4 +14,4 @@ class UserRoutes extends BaseRoutes {
   }
 }
 
-export default new UserRoutes();
+export default new UserRoutes().router;
