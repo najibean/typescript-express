@@ -10,7 +10,8 @@ import authValidation from '../validators/auth.validator';
 class AuthRoutes extends BaseRoutes {
   public routes(): void {
     this.router.post('/register', validate(authValidation), AuthController.register);
-    this.router.post('/login', AuthController.login);
+    this.router.post('/login', validate(authValidation), AuthController.login);
+    this.router.get('/profile', AuthController.profile);
   }
 }
 

@@ -44,6 +44,7 @@ class App {
 
     this.app.use('/api/v1/users', UserRoutes);
     this.app.use('/api/v1/auth', AuthRoutes);
+    // this.app.use() --> untuk global error handler
   }
 }
 
