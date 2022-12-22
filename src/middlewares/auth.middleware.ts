@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 export const auth = (req: Request, res: Response, next: NextFunction): any => {
   if (!req.headers.authorization) {
-    return res.status(401).send('Not authenticated!');
+    return res.status(401).send('There is no token');
   }
 
   let secretKey = process.env.JWT_SECRET_KEY || 'secret';
@@ -11,10 +11,14 @@ export const auth = (req: Request, res: Response, next: NextFunction): any => {
 
   try {
     const credential: string | object = jwt.verify(token, secretKey);
+
     if (credential) {
+      req.app.locals['credential'] = credential;
       return next();
     }
 
     return res.status(403).send('Token invalid');
-  } catch (error) {}
+  } catch (error) {
+    return res.status(403).send(error);
+  }
 };
