@@ -16,6 +16,7 @@ import helmet from 'helmet';
 
 // routers
 import UserRoutes from './routers/user.router';
+import AuthRoutes from './routers/auth.router';
 
 class App {
   public app: Application;
@@ -42,6 +43,7 @@ class App {
     });
 
     this.app.use('/api/v1/users', UserRoutes);
+    this.app.use('/api/v1/auth', AuthRoutes);
   }
 }
 
