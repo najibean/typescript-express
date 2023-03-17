@@ -47,7 +47,11 @@ class App {
     this.app.use('/api/v1/auth', AuthRoutes);
     this.app.use('/api/v1/todos', TodoRoutes);
 
-    // this.app.use() --> untuk global error handler
+    // untuk global error handler
+    this.app.use((err: { code: number; message: string }, req: Request, res: Response) => {
+      console.error('Error:', err.message);
+      return res.status(err.code || 500).send(err);
+    });
   }
 }
 
